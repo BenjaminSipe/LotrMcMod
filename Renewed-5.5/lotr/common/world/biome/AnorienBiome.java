@@ -1,0 +1,22 @@
+package lotr.common.world.biome;
+
+import lotr.common.world.gen.feature.TreeCluster;
+import lotr.common.world.gen.feature.grassblend.GrassBlends;
+import net.minecraft.world.biome.Biome.Builder;
+import net.minecraft.world.biome.Biome.Category;
+import net.minecraft.world.biome.Biome.RainType;
+
+public class AnorienBiome extends BaseGondorBiome {
+   public AnorienBiome(boolean major) {
+      super((new Builder()).func_205415_a(RainType.RAIN).func_205419_a(Category.PLAINS).func_205421_a(0.1F).func_205420_b(0.15F).func_205414_c(0.8F).func_205417_d(0.8F), major);
+   }
+
+   protected void addVegetation(net.minecraft.world.biome.BiomeGenerationSettings.Builder builder) {
+      LOTRBiomeFeatures.addTreesWithClusters(this, builder, 0, 0.02F, TreeCluster.of(10, 30), LOTRBiomeFeatures.oak(), 10000, LOTRBiomeFeatures.oakFancy(), 3000, LOTRBiomeFeatures.oakBees(), 100, LOTRBiomeFeatures.oakFancyBees(), 30, LOTRBiomeFeatures.birch(), 500, LOTRBiomeFeatures.birchFancy(), 200, LOTRBiomeFeatures.birchBees(), 5, LOTRBiomeFeatures.birchFancyBees(), 2, LOTRBiomeFeatures.beech(), 500, LOTRBiomeFeatures.beechFancy(), 200, LOTRBiomeFeatures.beechBees(), 5, LOTRBiomeFeatures.beechFancyBees(), 2, LOTRBiomeFeatures.apple(), 50, LOTRBiomeFeatures.pear(), 50, LOTRBiomeFeatures.appleBees(), 1, LOTRBiomeFeatures.pearBees(), 1);
+      LOTRBiomeFeatures.addGrass(this, builder, 10, GrassBlends.STANDARD);
+      LOTRBiomeFeatures.addDoubleGrass(builder, 2, GrassBlends.DOUBLE_STANDARD);
+      LOTRBiomeFeatures.addPlainsFlowers(builder, 1);
+      LOTRBiomeFeatures.addAthelasChance(builder);
+      LOTRBiomeFeatures.addWildPipeweedChance(builder, 24);
+   }
+}

@@ -1,0 +1,18 @@
+package lotr.client.render.entity;
+
+import lotr.client.render.RandomTextureVariants;
+import lotr.common.entity.npc.RohanManEntity;
+import net.minecraft.client.renderer.entity.EntityRendererManager;
+import net.minecraft.util.ResourceLocation;
+
+public class RohirrimWarriorRenderer extends RohanManRenderer {
+   private static final RandomTextureVariants SKINS = RandomTextureVariants.loadSkinsList("lotr", "textures/entity/rohan/rohan_warrior");
+
+   public RohirrimWarriorRenderer(EntityRendererManager mgr) {
+      super(mgr);
+   }
+
+   public ResourceLocation getEntityTexture(RohanManEntity man) {
+      return SKINS.getRandomSkin(man);
+   }
+}

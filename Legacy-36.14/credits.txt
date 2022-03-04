@@ -1,0 +1,137 @@
+﻿The Lord of the Rings Mod: Bringing Middle-earth to Minecraft
+
+Credits
+
+• Mevans - design, code, models, textures, structures, etc.
+• Karseius - models
+• Gruk - textures
+• Boyd Catsman (TheSmileBC) - mod videos, Near Harad speechbanks, Bree speechbanks
+
+Compability:
+
+• Vinyarion - Cauldron compatibility patches for durability and armour modifiers
+• DwarfyAssassin - compatibility patches for several issues, originally released as LOTR UCP (unofficial compatibility patch); modified above Vinyarion patches for inclusion in the mod
+
+Language:
+
+• High King Ithilion - helped with alignment ranks
+• Goran - lots and lots of speechbanks
+• Yorick - Rohirrim mini-quests
+• Joetatoe - old Near Haradrim mini-quests
+• Steve (Ríon) of Vinyë Lambengolmor - Elvish linguistic advice
+
+Textures: (including additional skin variants)
+
+• Yorick - Rohirrim skin variant, faction capes
+• Hooi Baal - Rohirric battleaxe
+• Stefan Gruno - High Elf skins
+• Sofian Benferhat - High Elf skins
+• Karseius - bandit skin
+• Fabio - Galadhrim elf skin
+• MG - hobbit skins, swan knight skins, orc skins
+• Carn - bandit skins
+• OtisCampbell - dwarven boar armour
+• Quipp - Uruk berserker scimitar
+• Faenor - Ringil
+• Aidan - turnips, leeks, Rhûn flowers
+• Lysurus Periphragmoides - Gundabad Uruk daggers, spear, pike, and bow, changed Uruk equipment
+• High King Ithilion - Ranger mail textures, Far Harad birds, Rivendell weapons, new High Elf skins, Lindon equipment
+• Miner of Truth - assorted variant skins
+• Dragonovith - Rhûnic battleaxe
+• Cristobal A. Ortiz - new Dalish blocks, new wood-elven scout armour
+• Gorbag Oneandtwo - female hillmen
+
+Models:
+
+• Javier Ortiz - rabbit, bird
+• Gruk - scorpion
+• MG - unsmeltery, kebab stand
+
+Sounds:
+
+• Yorick - elf, orc, and dwarf sound effects
+• Joetatoe - barrow-wights, balrogs, Utumno spooks
+• Aidan - waves, wind, bears, deer, aurochs, treasure piles, birds, wargs, rabbits
+
+Language translations:
+
+• Stefan Gruno - German
+• Corathir - Russian
+• Kyrynir - Russian
+• Ilya Shoor - Russian
+• Cristobal A. Ortiz - Spanish (Mexico)
+• Goran - Serbian, Croatian
+• Maximiliano Penna - Spanish (Argentina)
+• Yorick - Pirate
+• MG - Croatian
+• Sinthorion - German
+• Fabio - Italian
+• Frédéric Genest - French (France), French (Canada)
+• Matteo Feola - Italian
+• Jonathan Württemberger - German
+• Li Park - Chinese
+• Heartgold - Quenya
+• Gorbag12 - German
+• Crossbuilder - Quenya, German
+• Drago Novith - Portuguese (Brazil)
+• Mairon - Portuguese (Brazil)
+• Assassin of Harad - German
+• Nick Singh - Dutch
+• AllMightyStar - Portuguese (Portugal)
+• Keltenfeuer - German
+• Henrik Åkerberg - Finnish
+• emsknock - Finnish
+• Icefrone - Dutch
+• Aldan Tanneo - French
+• JeeferGG - Hungarian
+• Hummel009 - Russian
+• Daniel_Ellen__ - Russian
+• Brandon_Stark__ - Russian
+• Darth_Sidious__ - Russian
+• NumberSir - Chinese
+• WuzgXY - Chinese
+• itz_v4celix - German
+• _Hellrider_ - Polish
+• Messron (MineHatsu) - Japanese
+• NinoSecret - Italian
+• Fquacker (Flarefalk) - Italian
+• Shameless Eyes - Russian
+• heap - Turkish
+• TchuTchumas - Portuguese (Brazil)
+• lostStar_Zokyo - Japanese
+
+Structures: (general)
+
+• Goran - High Elven tower, Elven smithies
+• Gruk - Bree-land structures, Near Haradrim structures, Rohan villages, Dale, Dorwinion, Morwaith villages, Taurethrim villages, Half-trolls
+	- Gondor cottage, gatehouse, Dol Amroth stables, Easterling gatehouse, High Elf house
+• Boyd - Dalish watchtower, Hobbit house
+• SpoangityBob - Dúnedain villages, Gondor villages
+	- dwarven smithies, Black Uruk fortress
+• Darwid - Rohan fortress redesign, beacon tower redesign, barrow-downs barrow, hillmen houses, Dol Guldur tower
+• SuperEliHero - Gondor public baths
+• Aidan - Easterling structures
+• Pancakeponcho - Easterling statue
+• ThrewineD -  Gulfing house, Easterling garden
+• Karseius - Near Haradrim structures
+• Fearrippers - Bree-land structures, Near Haradrim structures, Dunlending structures
+	- Warg pits
+
+Structures: (from the Structure Contest)
+
+• Liam McLean Jones - ruined Gondor tower
+• Elijah Mauk-Olson - elven hall, Númenórean ruin
+• Noam Pcvc - ruined house
+• Daniel Armas - Gondor obelisk
+• Felipe Rojas - Harad obelisk, Hobbit windmill, Blue Mountains stronghold
+• Sebastian Wells - Gondor ruin, Dunland hill fort, Near Harad large house, Near Harad fortress
+• Goran - underwater elven ruin, Near Harad tents, Near Harad bazaar
+• Yorick - underwater elven ruin
+• Robert Armitage - Gondor turret
+• Maximiliano Penna - Hobbit farm
+
+• High King Ithilion for helping with the lists of faction rank names
+• 'Funky Villagers' (Jazz-elf song) based on 'Thatched Villagers' by Kevin Macleod - https://incompetech.com/
+• Regions of Harad and Rhûn based on 'The Atlas of Middle Earth' by Karen Wynn Fonstad
+
+And last but certainly not least, the Master, John Ronald Reuel Tolkien, without whom this mod and all of its community would have been less than a hobbit's pipe-dream!

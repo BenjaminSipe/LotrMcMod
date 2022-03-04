@@ -1,0 +1,71 @@
+package lotr.common.network;
+
+import java.util.function.Supplier;
+import lotr.common.LOTRLog;
+import lotr.common.data.FastTravelDataModule;
+import lotr.common.data.LOTRLevelData;
+import lotr.common.item.RedBookItem;
+import lotr.common.tileentity.CustomWaypointMarkerTileEntity;
+import lotr.common.util.LOTRUtil;
+import lotr.common.util.UsernameHelper;
+import lotr.common.world.map.AbstractCustomWaypoint;
+import lotr.common.world.map.AdoptedCustomWaypoint;
+import lotr.common.world.map.AdoptedCustomWaypointKey;
+import lotr.common.world.map.CustomWaypointStructureHandler;
+import net.minecraft.entity.player.ServerPlayerEntity;
+import net.minecraft.network.PacketBuffer;
+import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.vector.Vector3d;
+import net.minecraft.util.text.TranslationTextComponent;
+import net.minecraftforge.fml.network.NetworkEvent.Context;
+
+public class CPacketForsakeAdoptedCustomWaypoint {
+   private final AdoptedCustomWaypointKey waypointKey;
+
+   public CPacketForsakeAdoptedCustomWaypoint(AdoptedCustomWaypoint waypoint) {
+      this(waypoint.getAdoptedKey());
+   }
+
+   private CPacketForsakeAdoptedCustomWaypoint(AdoptedCustomWaypointKey key) {
+      this.waypointKey = key;
+   }
+
+   public static void encode(CPacketForsakeAdoptedCustomWaypoint packet, PacketBuffer buf) {
+      packet.waypointKey.write(buf);
+   }
+
+   public static CPacketForsakeAdoptedCustomWaypoint decode(PacketBuffer buf) {
+      AdoptedCustomWaypointKey waypointKey = AdoptedCustomWaypointKey.read(buf);
+      return new CPacketForsakeAdoptedCustomWaypoint(waypointKey);
+   }
+
+   public static void handle(CPacketForsakeAdoptedCustomWaypoint packet, Supplier context) {
+      ServerPlayerEntity player = ((Context)context.get()).getSender();
+      FastTravelDataModule ftData = LOTRLevelData.serverInstance().getData(player).getFastTravelData();
+      doForsakeAdoptedCustomWaypoint(packet, player, ftData);
+      ((Context)context.get()).setPacketHandled(true);
+   }
+
+   private static void doForsakeAdoptedCustomWaypoint(CPacketForsakeAdoptedCustomWaypoint packet, ServerPlayerEntity player, FastTravelDataModule ftData) {
+      AdoptedCustomWaypointKey waypointKey = packet.waypointKey;
+      AdoptedCustomWaypoint waypoint = ftData.getAdoptedCustomWaypointByKey(waypointKey);
+      if (waypoint == null) {
+         LOTRLog.warn("Player %s tried to forsake a nonexistent adopted custom waypoint (creator %s, ID %d)", UsernameHelper.getRawUsername(player), waypointKey.getCreatedPlayer(), waypointKey.getWaypointId());
+      } else {
+         BlockPos waypointPos = waypoint.getPosition();
+         Vector3d playerPos = player.func_213303_ch();
+         CustomWaypointMarkerTileEntity marker = CustomWaypointStructureHandler.INSTANCE.getAdjacentWaypointMarker(player.field_70170_p, waypointPos, (AbstractCustomWaypoint)null);
+         if (marker == null) {
+            LOTRLog.warn("Player %s tried to forsake an adopted custom waypoint where no waypoint structure exists (player pos = %s, clicked pos = %s)", UsernameHelper.getRawUsername(player), playerPos.toString(), waypointPos.toString());
+         } else if (!marker.matchesWaypointReference(waypoint)) {
+            LOTRLog.warn("Player %s tried to forsake an adopted custom waypoint at a marker which doesn't match the target waypoint (player pos = %s, clicked pos = %s)", UsernameHelper.getRawUsername(player), playerPos.toString(), waypointPos.toString());
+         } else if (waypointPos.func_218138_a(playerPos, false) >= 64.0D) {
+            LOTRLog.warn("Player %s tried to forsake an adopted custom waypoint on a block too far away (player pos = %s, clicked pos = %s)", UsernameHelper.getRawUsername(player), playerPos.toString(), waypointPos.toString());
+         } else {
+            ftData.removeAdoptedCustomWaypoint(player.field_70170_p, waypoint);
+            LOTRUtil.sendMessage(player, new TranslationTextComponent("chat.lotr.cwp.forsake", new Object[]{waypoint.getDisplayName()}));
+            RedBookItem.playCompleteWaypointActionSound(player.field_70170_p, waypointPos);
+         }
+      }
+   }
+}

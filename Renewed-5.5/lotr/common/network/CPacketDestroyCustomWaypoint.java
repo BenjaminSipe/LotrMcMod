@@ -1,0 +1,72 @@
+package lotr.common.network;
+
+import java.util.function.Supplier;
+import lotr.common.LOTRLog;
+import lotr.common.data.FastTravelDataModule;
+import lotr.common.data.LOTRLevelData;
+import lotr.common.item.RedBookItem;
+import lotr.common.tileentity.CustomWaypointMarkerTileEntity;
+import lotr.common.util.LOTRUtil;
+import lotr.common.util.UsernameHelper;
+import lotr.common.world.map.AbstractCustomWaypoint;
+import lotr.common.world.map.CustomWaypoint;
+import lotr.common.world.map.CustomWaypointStructureHandler;
+import net.minecraft.entity.player.ServerPlayerEntity;
+import net.minecraft.network.PacketBuffer;
+import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.vector.Vector3d;
+import net.minecraft.util.text.TranslationTextComponent;
+import net.minecraftforge.fml.network.NetworkEvent.Context;
+
+public class CPacketDestroyCustomWaypoint {
+   private final int waypointId;
+
+   public CPacketDestroyCustomWaypoint(CustomWaypoint waypoint) {
+      this(waypoint.getCustomId());
+   }
+
+   private CPacketDestroyCustomWaypoint(int waypointId) {
+      this.waypointId = waypointId;
+   }
+
+   public static void encode(CPacketDestroyCustomWaypoint packet, PacketBuffer buf) {
+      buf.func_150787_b(packet.waypointId);
+   }
+
+   public static CPacketDestroyCustomWaypoint decode(PacketBuffer buf) {
+      int waypointId = buf.func_150792_a();
+      return new CPacketDestroyCustomWaypoint(waypointId);
+   }
+
+   public static void handle(CPacketDestroyCustomWaypoint packet, Supplier context) {
+      ServerPlayerEntity player = ((Context)context.get()).getSender();
+      FastTravelDataModule ftData = LOTRLevelData.serverInstance().getData(player).getFastTravelData();
+      doDestroyCustomWaypoint(packet, player, ftData);
+      ((Context)context.get()).setPacketHandled(true);
+   }
+
+   private static void doDestroyCustomWaypoint(CPacketDestroyCustomWaypoint packet, ServerPlayerEntity player, FastTravelDataModule ftData) {
+      int waypointId = packet.waypointId;
+      CustomWaypoint waypoint = ftData.getCustomWaypointById(waypointId);
+      if (waypoint == null) {
+         LOTRLog.warn("Player %s tried to destroy a custom waypoint with nonexistent ID %d", UsernameHelper.getRawUsername(player), waypointId);
+      } else {
+         BlockPos waypointPos = waypoint.getPosition();
+         Vector3d playerPos = player.func_213303_ch();
+         CustomWaypointMarkerTileEntity marker = CustomWaypointStructureHandler.INSTANCE.getAdjacentWaypointMarker(player.field_70170_p, waypointPos, (AbstractCustomWaypoint)null);
+         if (marker == null) {
+            LOTRLog.warn("Player %s tried to destroy a custom waypoint where no waypoint structure exists (player pos = %s, clicked pos = %s)", UsernameHelper.getRawUsername(player), playerPos.toString(), waypointPos.toString());
+         } else if (!marker.matchesWaypointReference(waypoint)) {
+            LOTRLog.warn("Player %s tried to destroy a custom waypoint at a marker which doesn't match the target waypoint (player pos = %s, clicked pos = %s)", UsernameHelper.getRawUsername(player), playerPos.toString(), waypointPos.toString());
+         } else if (waypointPos.func_218138_a(playerPos, false) >= 64.0D) {
+            LOTRLog.warn("Player %s tried to destroy a custom waypoint on a block too far away (player pos = %s, clicked pos = %s)", UsernameHelper.getRawUsername(player), playerPos.toString(), waypointPos.toString());
+         } else {
+            if (CustomWaypointStructureHandler.INSTANCE.destroyCustomWaypointMarkerAndRemoveFromPlayerData(player.field_70170_p, waypoint, player, true)) {
+               LOTRUtil.sendMessage(player, new TranslationTextComponent("chat.lotr.cwp.destroy", new Object[]{waypoint.getDisplayName()}));
+               RedBookItem.playCompleteWaypointActionSound(player.field_70170_p, waypointPos);
+            }
+
+         }
+      }
+   }
+}

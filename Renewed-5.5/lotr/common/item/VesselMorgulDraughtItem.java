@@ -1,0 +1,38 @@
+package lotr.common.item;
+
+import java.util.Arrays;
+import lotr.common.data.LOTRLevelData;
+import lotr.common.fac.FactionPointers;
+import lotr.common.util.LOTRUtil;
+import net.minecraft.entity.LivingEntity;
+import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.item.ItemStack;
+import net.minecraft.potion.EffectInstance;
+import net.minecraft.potion.Effects;
+import net.minecraft.world.World;
+
+public class VesselMorgulDraughtItem extends VesselDrinkItem {
+   public VesselMorgulDraughtItem(int food, float sat, float dmg, EffectInstance... effs) {
+      super(0.0F, food, sat, true, dmg, Arrays.asList(effs));
+   }
+
+   public ItemStack func_77654_b(ItemStack stack, World world, LivingEntity entity) {
+      ItemStack result = super.func_77654_b(stack, world, entity);
+      if (!this.shouldApplyPotionEffects(stack, entity) && !world.field_72995_K) {
+         entity.func_195064_c(new EffectInstance(Effects.field_76436_u, LOTRUtil.secondsToTicks(5)));
+      }
+
+      return result;
+   }
+
+   protected boolean shouldApplyPotionEffects(ItemStack stack, LivingEntity entity) {
+      if (entity instanceof PlayerEntity) {
+         PlayerEntity player = (PlayerEntity)entity;
+         if (LOTRLevelData.getSidedData(player).getAlignmentData().getAlignment(FactionPointers.MORDOR) <= 0.0F) {
+            return false;
+         }
+      }
+
+      return super.shouldApplyPotionEffects(stack, entity);
+   }
+}

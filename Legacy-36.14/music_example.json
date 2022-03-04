@@ -1,0 +1,91 @@
+{
+  "tracks": [
+    {
+      "title": "Elf Song",
+      "file": "elfsong.ogg",
+      "regions": [
+        {
+          "name": "lindon"
+        },
+        {
+          "name": "gondor",
+          "sub": [
+            "dolAmroth"
+          ],
+          "categories": [
+            "day"
+          ],
+          "weight": 2.3
+        },
+        {
+          "name": "lothlorien",
+          "weight": 0.5
+        },
+        {
+          "name": "menu"
+        }
+      ],
+      "authors": [
+        "Me",
+        "Someone Else"
+      ]
+    },
+    {
+      "title": "To Be Honest",
+      "file": "tbh.ogg",
+      "regions": [
+        {
+          "name": "nearHarad",
+          "sub": [
+            "fertile",
+            "oasis"
+          ],
+          "categories": [
+            "night",
+            "cave"
+          ]
+        }
+      ],
+      "authors": [
+        "MG"
+      ]
+    },
+    {
+      "file": "lazy.ogg",
+      "regions": [
+        {
+          "name": "all"
+        }
+      ]
+    },
+    {
+      "title": "In the House of Fredegar Bolger",
+      "file": "fred.ogg",
+      "regions": [
+        {
+          "name": "menu"
+        },
+        {
+          "name": "shire",
+          "sub": [
+            "shire",
+            "moors",
+            "whiteDowns"
+          ],
+          "weight": 1
+        },
+        {
+          "name": "bree",
+          "categories": [
+            "day",
+            "night"
+          ]
+        }
+      ],
+      "authors": [
+        "Donald Duck",
+        "Duck Donald"
+      ]
+    }
+  ]
+}

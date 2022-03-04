@@ -1,0 +1,32 @@
+package lotr.common.world.structure2;
+
+import java.util.Random;
+import lotr.common.LOTRMod;
+import lotr.common.world.structure.LOTRChestContents;
+import net.minecraft.init.Blocks;
+
+public class LOTRWorldGenRangerTent extends LOTRWorldGenTentBase {
+   public LOTRWorldGenRangerTent(boolean flag) {
+      super(flag);
+   }
+
+   protected void setupRandomBlocks(Random random) {
+      super.setupRandomBlocks(random);
+      int randomWool = random.nextInt(3);
+      if (randomWool == 0) {
+         this.tentBlock = Blocks.field_150325_L;
+         this.tentMeta = 13;
+      } else if (randomWool == 1) {
+         this.tentBlock = Blocks.field_150325_L;
+         this.tentMeta = 12;
+      } else if (randomWool == 2) {
+         this.tentBlock = Blocks.field_150325_L;
+         this.tentMeta = 7;
+      }
+
+      this.fenceBlock = Blocks.field_150422_aJ;
+      this.fenceMeta = 0;
+      this.tableBlock = LOTRMod.rangerTable;
+      this.chestContents = LOTRChestContents.RANGER_TENT;
+   }
+}
