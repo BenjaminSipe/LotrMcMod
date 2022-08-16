@@ -1,5 +1,18 @@
-# 我的世界魔戒模组源码
-用[fernflower](https://github.com/JetBrains/intellij-community/tree/master/plugins/java-decompiler/engine)反编译，未经反混淆，不保证完全准确
-**仅供开发者自用，不得以任何形式公开上传**
+# README
+Forked from decompiled code by NumberSir. Currently only for personal use, clone at your own risk.
 
-lotr文件夹下是java代码部分
+Lord of the rings Mod. Originally by writer Mevans on the Wiki. . . and referred to as such by the community. 
+
+According to the code, he appears to use the dev name dwarfyassassin. 
+
+### Future plans.
+#### With recognition that these are unrealistic goals that will most likely never be realized.
+
+ - Fix any issues with code so that it may be run for local development. 
+ - De-obfuscate code and make it readable for anyone. 
+ - Create a gameplan for further development. 
+ - Implement that plan and share the code with the world. 
+ - Plan my wedding
+ - Murder my wife
+ - Blame Guilder
+
