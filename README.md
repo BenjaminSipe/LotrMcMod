@@ -3,8 +3,6 @@ Forked from decompiled code by NumberSir. Currently only for personal use, clone
 
 Lord of the rings Mod. Originally by writer Mevans on the Wiki. . . and referred to as such by the community. 
 
-According to the code, he appears to use the dev name dwarfyassassin. 
-
 ### Future plans.
 #### With recognition that these are unrealistic goals that will most likely never be realized.
 
